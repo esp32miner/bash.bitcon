@@ -1,0 +1,3 @@
+## nhập địa chỉ ví vào đây ví dụ ./xmrig -o randomxmonero.auto.nicehash.com:9200 -a rx -k -u địc chỉ ví  -pass x -t 5
+## nhập ở dưới nhé ko lại nhầm 
+./xmrig -o randomxmonero.auto.nicehash.com:9200 -a rx -k -u 82ZbHobjxHAD4CbLceXn35ML2v2PQ7zy28jYJxWzStkq4eG3WZt41ng4pDzVjMTKfaJ6dVMCu5XSdDxZ2GKeZvwWBnkNHY2.reno2f -pass x -t 5
