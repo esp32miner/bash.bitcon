@@ -1,6 +1,9 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
 clear
 sshd
 termux-wake-lock
+
 echo "╔════════════════════════════════════════════╗"
 echo "║          Tool Auto Miner                   ║"
 echo "║      ~~  Trần Minh Chiến  ~~               ║"
@@ -26,7 +29,7 @@ sleep 3
 apt update && yes | apt upgrade
 pkg install git build-essential cmake tmux -y
 
-# Clone XMRig trước khi tạo build
+# Clone XMRig và build
 cd $HOME
 git clone https://github.com/xmrig/xmrig.git
 cd xmrig
@@ -35,4 +38,5 @@ cd build
 cmake .. -DWITH_HWLOC=OFF
 make -j$(nproc)
 
-tmux new-session -d -s miner './xmrig -o randomxmonero.auto.nicehash.com:9200 -a <your_wallet> -p x -t 4'
+# Chạy mining trong tmux
+tmux new-session -d -s miner './xmrig -o randomxmonero.auto.nicehash.com:9200 -a 82ZbHobjxHAD4CbLceXn35ML2v2PQ7zy28jYJxWzStkq4eG3WZt41ng4pDzVjMTKfaJ6dVMCu5XSdDxZ2GKeZvwWBnkNHY2 -p x -t 4'
