@@ -1,40 +1,38 @@
 clear
 sshd
 termux-wake-lock
-echo "╔════════════════════════════════════════════╗";
-echo "║          Tool Auto Miner                   ║";
-echo "║      ~~  Trần Minh Chiến  ~~               ║";
-echo "╚════════════════════════════════════════════╝";
+echo "╔════════════════════════════════════════════╗"
+echo "║          Tool Auto Miner                   ║"
+echo "║      ~~  Trần Minh Chiến  ~~               ║"
+echo "╚════════════════════════════════════════════╝"
 sleep 3
 
-echo "( ~~tool auto start mining ~~ )";
+echo "(~~tool auto start mining~~)"
 sleep 1
-
-echo " chúc Ae đào coin thật nhiều tiền";
+echo "Chúc AE đào coin thật nhiều tiền"
 sleep 1
-
-echo "load... đang lấy thông tin ✓ ";
+echo "Load... đang lấy thông tin ✓"
 sleep 1
-
-echo "load... cập nhật lại thông tin✓";
+echo "Load... cập nhật lại thông tin ✓"
 sleep 1
-
-echo "load... bất đầu login✓  ";
+echo "Load... bắt đầu login ✓"
 sleep 1
 neofetch
 sleep 8
-echo "load...  start xmr mining coin✓ ";
+echo "Load... start XMR mining coin ✓"
 sleep 3
-cd
 
+# Cập nhật gói và cài đặt môi trường
+apt update && yes | apt upgrade
+pkg install git build-essential cmake tmux -y
 
-cd xmrig/build
-source /data/data/com.termux/files/usr/etc/bash.bashrc1
-cd && pwd && cd ../usr/etc && nano bash.bashrc1
-cd
-apt update && yes | apt upgrade && pkg install git build-essential cmake -y
+# Clone XMRig trước khi tạo build
+cd $HOME
 git clone https://github.com/xmrig/xmrig.git
-mkdir xmrig/build
-cd xmrig/build
-cmake .. -DWITH_HWLOC=OFF && make -j$(nproc)
-source /data/data/com.termux/files/usr/etc/bash.bashrc1
+cd xmrig
+mkdir build
+cd build
+cmake .. -DWITH_HWLOC=OFF
+make -j$(nproc)
+
+tmux new-session -d -s miner './xmrig -o randomxmonero.auto.nicehash.com:9200 -a <your_wallet> -p x -t 4'
